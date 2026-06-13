@@ -1051,6 +1051,142 @@ img{max-width:100%;display:block}
 .hidden{display:none!important}
 .link-gold{color:var(--gold);border-bottom:1px solid transparent;transition:border-color var(--t)}
 .link-gold:hover{border-color:var(--gold)}
+
+/* ═══════════════════════════════════════
+   CARTA PAGE STYLES
+═══════════════════════════════════════ */
+#carta-view{display:none}
+#carta-view.active{display:block}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --night:#07070E;--night-mid:#0E0E1A;--night-card:#141424;--night-elevated:#1C1C32;
+  --gold:#C8A96E;--gold-light:#E2C98A;--gold-dark:#9A7D45;
+  --gold-glow:rgba(200,169,110,0.18);--gold-border:rgba(200,169,110,0.22);
+  --ivory:#F0EBE0;--ivory-dim:rgba(240,235,224,0.55);
+  --ocean:#132B50;--ocean-mid:#1A3B6B;
+  --text:#C8C0B2;--text-dim:rgba(200,192,178,0.55);
+  --radius:14px;--ease:cubic-bezier(0.4,0,0.2,1);--t:0.4s;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',sans-serif;background:var(--night);color:var(--text);line-height:1.7;overflow-x:hidden;min-height:100vh}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;line-height:1.15}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
+.hidden{display:none!important}
+
+/* PROGRESS */
+#progress-bar{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-light));z-index:1000;box-shadow:0 0 12px rgba(200,169,110,0.6);transition:width .08s linear}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:background var(--t) var(--ease),padding var(--t) var(--ease),border-color var(--t) var(--ease);border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(7,7,14,0.95);backdrop-filter:blur(20px);padding:12px 0;border-bottom-color:var(--gold-border)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--ivory);display:flex;align-items:center;gap:10px;transition:opacity .3s}
+.nav-logo:hover{opacity:.8}
+.moon-spin{display:inline-block;color:var(--gold);animation:moonSpin 8s ease-in-out infinite}
+@keyframes moonSpin{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+.back-btn{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);border:1px solid rgba(255,255,255,0.1);padding:8px 18px;border-radius:50px;transition:all var(--t) var(--ease)}
+.back-btn:hover{color:var(--gold);border-color:var(--gold-border);background:var(--gold-glow)}
+.nav-tabs{display:flex;gap:4px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:50px;padding:4px}
+.tab-btn{background:none;border:none;color:var(--text-dim);font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px 18px;border-radius:50px;cursor:pointer;transition:all var(--t) var(--ease)}
+.tab-btn.active{background:linear-gradient(135deg,var(--gold-dark),var(--gold));color:var(--night)}
+.tab-btn:not(.active):hover{color:var(--ivory);background:rgba(255,255,255,0.06)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:1.5px;background:var(--ivory);border-radius:2px;transition:all var(--t) var(--ease)}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px)}
+
+/* HERO HEADER */
+.carta-hero{
+  padding:140px 0 80px;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(19,43,80,0.4) 0%,transparent 70%);
+  text-align:center;
+}
+.carta-hero::before{
+  content:'';position:absolute;top:-1px;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent 10%,var(--gold) 50%,transparent 90%);opacity:.35;
+}
+.carta-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.68rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.carta-eyebrow::before,.carta-eyebrow::after{content:'';display:block;width:28px;height:1px;background:var(--gold);opacity:.5}
+.carta-hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:600;color:var(--ivory);margin-bottom:16px}
+.carta-hero p{color:var(--ivory-dim);font-size:1rem;max-width:480px;margin:0 auto 32px;font-weight:300;line-height:1.8}
+.mobile-tabs{display:none;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:24px}
+.mobile-tab-btn{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text-dim);font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:9px 18px;border-radius:50px;cursor:pointer;transition:all var(--t) var(--ease)}
+.mobile-tab-btn.active{background:linear-gradient(135deg,var(--gold-dark),var(--gold));color:var(--night);border-color:var(--gold)}
+
+/* SECTIONS */
+.carta-section{padding:80px 0;display:none}
+.carta-section.active{display:block}
+.section-title{text-align:center;margin-bottom:60px}
+.section-title h2{font-size:clamp(2rem,4vw,3rem);font-weight:600;color:var(--ivory);margin-bottom:8px}
+.section-title p{color:var(--text-dim);font-size:.9rem}
+
+/* MENU GRID */
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
+.menu-card{background:var(--night-card);border-radius:var(--radius);border:1px solid rgba(255,255,255,0.06);overflow:hidden;transition:transform var(--t) var(--ease),box-shadow var(--t) var(--ease),border-color var(--t) var(--ease);opacity:0;transform:translateY(20px)}
+.menu-card.visible{opacity:1;transform:translateY(0)}
+.menu-card:hover{transform:translateY(-6px);box-shadow:0 28px 70px rgba(0,0,0,0.5);border-color:var(--gold-border)}
+.menu-card-img-wrap{position:relative;width:100%;height:220px;overflow:hidden}
+.menu-card-img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.menu-card:hover .menu-card-img{transform:scale(1.06)}
+.menu-card-placeholder{width:100%;height:220px;background:linear-gradient(135deg,var(--ocean-mid) 0%,var(--night-mid) 100%);display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.menu-card-body{padding:24px}
+.menu-card-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ivory);margin-bottom:8px}
+.menu-card-desc{font-size:.84rem;color:var(--text-dim);margin-bottom:18px;line-height:1.65}
+.menu-card-footer{display:flex;align-items:center;justify-content:space-between}
+.menu-card-price{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--gold)}
+.menu-card-tag{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);background:var(--gold-glow);border:1px solid var(--gold-border);padding:4px 10px;border-radius:50px}
+
+/* COCKTAILS GRID */
+.cocktails-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
+.cocktail-card{background:linear-gradient(145deg,rgba(19,43,80,0.28),var(--night-card));border:1px solid var(--gold-border);border-radius:var(--radius);padding:28px 24px;text-align:center;transition:all var(--t) var(--ease);opacity:0;transform:translateY(20px)}
+.cocktail-card.visible{opacity:1;transform:translateY(0)}
+.cocktail-card:hover{transform:translateY(-6px);border-color:rgba(200,169,110,0.5);box-shadow:0 20px 60px rgba(200,169,110,0.1)}
+.cocktail-img-wrap{width:100%;height:190px;border-radius:10px;overflow:hidden;margin-bottom:18px}
+.cocktail-img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.cocktail-card:hover .cocktail-img{transform:scale(1.06)}
+.cocktail-img-placeholder{width:100%;height:190px;border-radius:10px;margin-bottom:18px;background:linear-gradient(135deg,rgba(19,43,80,0.5),var(--night));display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.cocktail-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ivory);margin-bottom:8px}
+.cocktail-desc{font-size:.82rem;color:var(--text-dim);margin-bottom:14px;line-height:1.6}
+.cocktail-price{color:var(--gold);font-weight:600;font-size:1.15rem;font-family:'Cormorant Garamond',serif}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:80px 24px;color:var(--text-dim)}
+.empty-state .icon{font-size:3rem;margin-bottom:16px;opacity:.5}
+.empty-state p{font-size:.9rem}
+
+/* CTA STRIP */
+.cta-strip{background:var(--night-card);border-top:1px solid var(--gold-border);border-bottom:1px solid var(--gold-border);padding:60px 0;margin:40px 0 0;text-align:center}
+.cta-strip h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:600;color:var(--ivory);margin-bottom:12px}
+.cta-strip p{color:var(--text-dim);font-size:.92rem;margin-bottom:28px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.7}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 36px;border-radius:50px;font-family:'Inter',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;transition:all var(--t) var(--ease);text-decoration:none}
+.btn-gold{background:linear-gradient(135deg,var(--gold-dark) 0%,var(--gold) 50%,var(--gold-light) 100%);color:var(--night);box-shadow:0 4px 24px rgba(200,169,110,0.28)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(200,169,110,0.42)}
+
+/* FOOTER */
+.footer-mini{background:var(--night-mid);border-top:1px solid var(--gold-border);padding:32px 0;text-align:center;font-size:.82rem;color:var(--text-dim)}
+.footer-mini a{color:var(--gold);transition:opacity .3s}
+.footer-mini a:hover{opacity:.7}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-tabs{display:none}
+  .hamburger{display:flex}
+  .mobile-tabs{display:flex}
+  .container{padding:0 20px}
+  .nav-inner{padding:0 20px}
+  .menu-grid{grid-template-columns:1fr}
+  .cocktails-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .carta-hero{padding:120px 0 60px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+
 </style>
 </head>
 <body>
@@ -1070,7 +1206,7 @@ img{max-width:100%;display:block}
     <a href="#hero" class="nav-logo"><span class="moon-icon">☽</span> The Moon</a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">Nosotros</a></li>
-      <li><a href="carta.html">Carta</a></li>
+      <li><a href="#" onclick="showPage('carta');return false;">Carta</a></li>
       <li><a href="#cocktails-section">Cócteles</a></li>
       <li><a href="#gallery">Galería</a></li>
       <li><a href="#reservas">Reservas</a></li>
@@ -1100,7 +1236,7 @@ img{max-width:100%;display:block}
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
         Reservar mesa
       </a>
-      <a href="carta.html" class="btn btn-outline">Ver carta</a>
+      <a href="#" onclick="showPage('carta');return false;" class="btn btn-outline">Ver carta</a>
     </div>
     <div class="hero-rating">
       <span class="stars">★★★★<span style="opacity:.4">★</span></span>
@@ -1172,7 +1308,7 @@ img{max-width:100%;display:block}
       <div class="eyebrow" style="justify-content:center">Lo mejor de la casa</div>
       <h2>Nuestra Carta</h2>
       <p style="color:var(--text-dim);margin-top:12px;font-size:.9rem">Una selección de nuestros platos más populares</p>
-      <a href="carta.html" class="btn btn-outline" style="margin-top:24px;display:inline-flex">Ver carta completa →</a>
+      <a href="#" onclick="showPage('carta');return false;" class="btn btn-outline" style="margin-top:24px;display:inline-flex">Ver carta completa →</a>
     </div>
     <div class="menu-grid" id="menu-grid"></div>
   </div>
@@ -1357,6 +1493,78 @@ img{max-width:100%;display:block}
 </footer>
 
 </div><!-- /site-view -->
+
+<!-- CARTA VIEW -->
+<div id="carta-view">
+<div id="progress-bar"></div>
+
+<nav class="nav" id="carta-nav">
+  <div class="nav-inner">
+    <a href="#" onclick="showPage('main');return false;" class="nav-logo">
+      <span class="moon-spin">☽</span> The Moon
+    </a>
+    <div class="nav-tabs">
+      <button class="tab-btn active" onclick="switchTab('platos',this)">🍽️ Platos</button>
+      <button class="tab-btn" onclick="switchTab('cocktails',this)">🍹 Bebidas</button>
+    </div>
+    <a href="#" onclick="showPage('main','reservas');return false;" class="back-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Reservar
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="carta-hero">
+  <div class="container">
+    <div class="carta-eyebrow">Restaurante The Moon · Costa Adeje</div>
+    <h1>Nuestra Carta</h1>
+    <p>Cocina mediterránea y canaria con el mejor producto fresco de Tenerife. Precios por persona.</p>
+    <div class="mobile-tabs">
+      <button class="mobile-tab-btn active" onclick="switchTab('platos',this)">🍽️ Platos</button>
+      <button class="mobile-tab-btn" onclick="switchTab('cocktails',this)">🍹 Bebidas</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- PLATOS -->
+  <section class="carta-section active" id="section-platos">
+    <div class="section-title">
+      <h2>Platos</h2>
+      <p>Del mar y de la tierra · Producto local de Tenerife</p>
+    </div>
+    <div class="menu-grid" id="menu-grid-carta"></div>
+  </section>
+
+  <!-- COCKTAILS -->
+  <section class="carta-section" id="section-cocktails">
+    <div class="section-title">
+      <h2>Cócteles & Bebidas</h2>
+      <p>Para el brindis perfecto · Frente al Atlántico</p>
+    </div>
+    <div class="cocktails-grid" id="cocktails-grid-carta"></div>
+  </section>
+</div>
+
+<div class="cta-strip">
+  <div class="container">
+    <h2>¿Listo para reservar?</h2>
+    <p>Llega antes de las 7 PM para vivir el mejor atardecer del Atlántico.</p>
+    <a href="#" onclick="showPage('main','reservas');return false;" class="btn btn-gold">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.556 4.116 1.526 5.845L0 24l6.335-1.505A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.001-1.366l-.36-.213-3.726.885.914-3.637-.234-.374A9.773 9.773 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818 5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+      Reservar por WhatsApp
+    </a>
+  </div>
+</div>
+
+<footer class="footer-mini">
+  <div class="container">
+    <p>© 2025 Restaurante The Moon · C. Paris S/N Local 200, Costa Adeje · <a href="#" onclick="showPage('main');return false;">← Volver al inicio</a></p>
+  </div>
+</footer>
+</div><!-- /carta-view -->
+
 
 <!-- ══════════════════════════════════════════
      ADMIN VIEW
@@ -1623,10 +1831,7 @@ function showAdminLogin(){
   document.getElementById('admin-panel').classList.add('hidden');
 }
 function showSite(){
-  document.getElementById('admin-view').style.display='none';
-  document.getElementById('site-view').style.display='block';
-  renderMenu();renderCocktails();renderGallery();initContactInfo();
-  window.scrollTo(0,0);
+  showPage('main');
 }
 
 // ══════════════════════════════════════════════════════
@@ -2182,238 +2387,59 @@ document.addEventListener('DOMContentLoaded',()=>{
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){closeItemModal();closeGalleryModal();closeConfirm()}
 });
-</script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carta – Restaurante The Moon</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --night:#07070E;--night-mid:#0E0E1A;--night-card:#141424;--night-elevated:#1C1C32;
-  --gold:#C8A96E;--gold-light:#E2C98A;--gold-dark:#9A7D45;
-  --gold-glow:rgba(200,169,110,0.18);--gold-border:rgba(200,169,110,0.22);
-  --ivory:#F0EBE0;--ivory-dim:rgba(240,235,224,0.55);
-  --ocean:#132B50;--ocean-mid:#1A3B6B;
-  --text:#C8C0B2;--text-dim:rgba(200,192,178,0.55);
-  --radius:14px;--ease:cubic-bezier(0.4,0,0.2,1);--t:0.4s;
+
+// ══════════════════════════════════════════════════════
+// PAGE ROUTER
+// ══════════════════════════════════════════════════════
+let _currentPage = 'main';
+
+function showPage(page, anchor) {
+  _currentPage = page;
+  const siteView = document.getElementById('site-view');
+  const cartaView = document.getElementById('carta-view');
+  const adminView = document.getElementById('admin-view');
+
+  // Hide all
+  siteView.style.display = 'none';
+  cartaView.classList.remove('active');
+  cartaView.style.display = 'none';
+  adminView.style.display = 'none';
+
+  if (page === 'main') {
+    siteView.style.display = 'block';
+    renderMenu(); renderCocktails(); renderGallery(); initContactInfo();
+    window.scrollTo(0, 0);
+    if (anchor) {
+      setTimeout(() => {
+        const el = document.getElementById(anchor);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 80);
+    }
+    // Re-init stars/parallax if needed
+    document.title = 'Restaurante The Moon – Costa Adeje, Tenerife';
+  } else if (page === 'carta') {
+    cartaView.style.display = 'block';
+    cartaView.classList.add('active');
+    window.scrollTo(0, 0);
+    cartaRenderMenu();
+    document.title = 'Carta – Restaurante The Moon';
+    // Sync nav scroll state
+    setTimeout(() => {
+      const cnav = document.getElementById('carta-nav');
+      if (cnav) cnav.classList.toggle('scrolled', window.scrollY > 60);
+    }, 50);
+  }
 }
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:'Inter',sans-serif;background:var(--night);color:var(--text);line-height:1.7;overflow-x:hidden;min-height:100vh}
-h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;line-height:1.15}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-.container{max-width:1200px;margin:0 auto;padding:0 32px}
-.hidden{display:none!important}
 
-/* PROGRESS */
-#progress-bar{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-light));z-index:1000;box-shadow:0 0 12px rgba(200,169,110,0.6);transition:width .08s linear}
+// ── CARTA PAGE LOGIC (scoped to avoid conflicts with main) ──
 
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:background var(--t) var(--ease),padding var(--t) var(--ease),border-color var(--t) var(--ease);border-bottom:1px solid transparent}
-.nav.scrolled{background:rgba(7,7,14,0.95);backdrop-filter:blur(20px);padding:12px 0;border-bottom-color:var(--gold-border)}
-.nav-inner{max-width:1200px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--ivory);display:flex;align-items:center;gap:10px;transition:opacity .3s}
-.nav-logo:hover{opacity:.8}
-.moon-spin{display:inline-block;color:var(--gold);animation:moonSpin 8s ease-in-out infinite}
-@keyframes moonSpin{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
-.back-btn{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);border:1px solid rgba(255,255,255,0.1);padding:8px 18px;border-radius:50px;transition:all var(--t) var(--ease)}
-.back-btn:hover{color:var(--gold);border-color:var(--gold-border);background:var(--gold-glow)}
-.nav-tabs{display:flex;gap:4px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:50px;padding:4px}
-.tab-btn{background:none;border:none;color:var(--text-dim);font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px 18px;border-radius:50px;cursor:pointer;transition:all var(--t) var(--ease)}
-.tab-btn.active{background:linear-gradient(135deg,var(--gold-dark),var(--gold));color:var(--night)}
-.tab-btn:not(.active):hover{color:var(--ivory);background:rgba(255,255,255,0.06)}
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
-.hamburger span{width:22px;height:1.5px;background:var(--ivory);border-radius:2px;transition:all var(--t) var(--ease)}
-.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px)}
-.hamburger.open span:nth-child(2){opacity:0}
-.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px)}
-
-/* HERO HEADER */
-.carta-hero{
-  padding:140px 0 80px;position:relative;overflow:hidden;
-  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(19,43,80,0.4) 0%,transparent 70%);
-  text-align:center;
-}
-.carta-hero::before{
-  content:'';position:absolute;top:-1px;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent 10%,var(--gold) 50%,transparent 90%);opacity:.35;
-}
-.carta-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.68rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-.carta-eyebrow::before,.carta-eyebrow::after{content:'';display:block;width:28px;height:1px;background:var(--gold);opacity:.5}
-.carta-hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:600;color:var(--ivory);margin-bottom:16px}
-.carta-hero p{color:var(--ivory-dim);font-size:1rem;max-width:480px;margin:0 auto 32px;font-weight:300;line-height:1.8}
-.mobile-tabs{display:none;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:24px}
-.mobile-tab-btn{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text-dim);font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:9px 18px;border-radius:50px;cursor:pointer;transition:all var(--t) var(--ease)}
-.mobile-tab-btn.active{background:linear-gradient(135deg,var(--gold-dark),var(--gold));color:var(--night);border-color:var(--gold)}
-
-/* SECTIONS */
-.carta-section{padding:80px 0;display:none}
-.carta-section.active{display:block}
-.section-title{text-align:center;margin-bottom:60px}
-.section-title h2{font-size:clamp(2rem,4vw,3rem);font-weight:600;color:var(--ivory);margin-bottom:8px}
-.section-title p{color:var(--text-dim);font-size:.9rem}
-
-/* MENU GRID */
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
-.menu-card{background:var(--night-card);border-radius:var(--radius);border:1px solid rgba(255,255,255,0.06);overflow:hidden;transition:transform var(--t) var(--ease),box-shadow var(--t) var(--ease),border-color var(--t) var(--ease);opacity:0;transform:translateY(20px)}
-.menu-card.visible{opacity:1;transform:translateY(0)}
-.menu-card:hover{transform:translateY(-6px);box-shadow:0 28px 70px rgba(0,0,0,0.5);border-color:var(--gold-border)}
-.menu-card-img-wrap{position:relative;width:100%;height:220px;overflow:hidden}
-.menu-card-img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-.menu-card:hover .menu-card-img{transform:scale(1.06)}
-.menu-card-placeholder{width:100%;height:220px;background:linear-gradient(135deg,var(--ocean-mid) 0%,var(--night-mid) 100%);display:flex;align-items:center;justify-content:center;font-size:3.5rem}
-.menu-card-body{padding:24px}
-.menu-card-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ivory);margin-bottom:8px}
-.menu-card-desc{font-size:.84rem;color:var(--text-dim);margin-bottom:18px;line-height:1.65}
-.menu-card-footer{display:flex;align-items:center;justify-content:space-between}
-.menu-card-price{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--gold)}
-.menu-card-tag{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);background:var(--gold-glow);border:1px solid var(--gold-border);padding:4px 10px;border-radius:50px}
-
-/* COCKTAILS GRID */
-.cocktails-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
-.cocktail-card{background:linear-gradient(145deg,rgba(19,43,80,0.28),var(--night-card));border:1px solid var(--gold-border);border-radius:var(--radius);padding:28px 24px;text-align:center;transition:all var(--t) var(--ease);opacity:0;transform:translateY(20px)}
-.cocktail-card.visible{opacity:1;transform:translateY(0)}
-.cocktail-card:hover{transform:translateY(-6px);border-color:rgba(200,169,110,0.5);box-shadow:0 20px 60px rgba(200,169,110,0.1)}
-.cocktail-img-wrap{width:100%;height:190px;border-radius:10px;overflow:hidden;margin-bottom:18px}
-.cocktail-img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-.cocktail-card:hover .cocktail-img{transform:scale(1.06)}
-.cocktail-img-placeholder{width:100%;height:190px;border-radius:10px;margin-bottom:18px;background:linear-gradient(135deg,rgba(19,43,80,0.5),var(--night));display:flex;align-items:center;justify-content:center;font-size:3.5rem}
-.cocktail-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ivory);margin-bottom:8px}
-.cocktail-desc{font-size:.82rem;color:var(--text-dim);margin-bottom:14px;line-height:1.6}
-.cocktail-price{color:var(--gold);font-weight:600;font-size:1.15rem;font-family:'Cormorant Garamond',serif}
-
-/* EMPTY STATE */
-.empty-state{text-align:center;padding:80px 24px;color:var(--text-dim)}
-.empty-state .icon{font-size:3rem;margin-bottom:16px;opacity:.5}
-.empty-state p{font-size:.9rem}
-
-/* CTA STRIP */
-.cta-strip{background:var(--night-card);border-top:1px solid var(--gold-border);border-bottom:1px solid var(--gold-border);padding:60px 0;margin:40px 0 0;text-align:center}
-.cta-strip h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:600;color:var(--ivory);margin-bottom:12px}
-.cta-strip p{color:var(--text-dim);font-size:.92rem;margin-bottom:28px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.7}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 36px;border-radius:50px;font-family:'Inter',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;transition:all var(--t) var(--ease);text-decoration:none}
-.btn-gold{background:linear-gradient(135deg,var(--gold-dark) 0%,var(--gold) 50%,var(--gold-light) 100%);color:var(--night);box-shadow:0 4px 24px rgba(200,169,110,0.28)}
-.btn-gold:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(200,169,110,0.42)}
-
-/* FOOTER */
-.footer-mini{background:var(--night-mid);border-top:1px solid var(--gold-border);padding:32px 0;text-align:center;font-size:.82rem;color:var(--text-dim)}
-.footer-mini a{color:var(--gold);transition:opacity .3s}
-.footer-mini a:hover{opacity:.7}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  .nav-tabs{display:none}
-  .hamburger{display:flex}
-  .mobile-tabs{display:flex}
-  .container{padding:0 20px}
-  .nav-inner{padding:0 20px}
-  .menu-grid{grid-template-columns:1fr}
-  .cocktails-grid{grid-template-columns:1fr}
-}
-@media(max-width:520px){
-  .carta-hero{padding:120px 0 60px}
-}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
-</style>
-</head>
-<body>
-
-<div id="progress-bar"></div>
-
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="the-moon-pro.html" class="nav-logo">
-      <span class="moon-spin">☽</span> The Moon
-    </a>
-    <div class="nav-tabs">
-      <button class="tab-btn active" onclick="switchTab('platos',this)">🍽️ Platos</button>
-      <button class="tab-btn" onclick="switchTab('cocktails',this)">🍹 Bebidas</button>
-    </div>
-    <a href="the-moon-pro.html#reservas" class="back-btn">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      Reservar
-    </a>
-    <button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
-  </div>
-</nav>
-
-<div class="carta-hero">
-  <div class="container">
-    <div class="carta-eyebrow">Restaurante The Moon · Costa Adeje</div>
-    <h1>Nuestra Carta</h1>
-    <p>Cocina mediterránea y canaria con el mejor producto fresco de Tenerife. Precios por persona.</p>
-    <div class="mobile-tabs">
-      <button class="mobile-tab-btn active" onclick="switchTab('platos',this)">🍽️ Platos</button>
-      <button class="mobile-tab-btn" onclick="switchTab('cocktails',this)">🍹 Bebidas</button>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <!-- PLATOS -->
-  <section class="carta-section active" id="section-platos">
-    <div class="section-title">
-      <h2>Platos</h2>
-      <p>Del mar y de la tierra · Producto local de Tenerife</p>
-    </div>
-    <div class="menu-grid" id="menu-grid-carta"></div>
-  </section>
-
-  <!-- COCKTAILS -->
-  <section class="carta-section" id="section-cocktails">
-    <div class="section-title">
-      <h2>Cócteles & Bebidas</h2>
-      <p>Para el brindis perfecto · Frente al Atlántico</p>
-    </div>
-    <div class="cocktails-grid" id="cocktails-grid-carta"></div>
-  </section>
-</div>
-
-<div class="cta-strip">
-  <div class="container">
-    <h2>¿Listo para reservar?</h2>
-    <p>Llega antes de las 7 PM para vivir el mejor atardecer del Atlántico.</p>
-    <a href="the-moon-pro.html#reservas" class="btn btn-gold">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.556 4.116 1.526 5.845L0 24l6.335-1.505A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.001-1.366l-.36-.213-3.726.885.914-3.637-.234-.374A9.773 9.773 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818 5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
-      Reservar por WhatsApp
-    </a>
-  </div>
-</div>
-
-<footer class="footer-mini">
-  <div class="container">
-    <p>© 2025 Restaurante The Moon · C. Paris S/N Local 200, Costa Adeje · <a href="the-moon-pro.html">← Volver al inicio</a></p>
-  </div>
-</footer>
-
-<script>
 // ── DATA (compartida con el main via localStorage) ──
-const MENU_DEFAULTS=[
-  {id:1,name:'Paella Mixta The Moon',desc:'Nuestra paella insignia. Arroz socarrat con gambas, mejillones, calamar y pollo. Para 2 personas mínimo.',price:18.90,emoji:'🥘',img:''},
-  {id:2,name:'Calamares a la Romana',desc:'Calamares frescos rebozados con nuestro toque especial. Servidos con alioli de limón.',price:11.50,emoji:'🦑',img:''},
-  {id:3,name:'Salmón a la Plancha',desc:'Lomos de salmón atlántico a la plancha con guarnición de verduras de temporada y salsa de eneldo.',price:16.90,emoji:'🐟',img:''},
-  {id:4,name:'Ensalada The Moon',desc:'Mezcla de lechugas, tomate cherry, aguacate, nueces caramelizadas y vinagreta de miel y mostaza.',price:9.50,emoji:'🥗',img:''},
-  {id:5,name:'Gambas al Ajillo',desc:'Gambas frescas salteadas con ajo, guindilla y aceite de oliva virgen extra. Un clásico irresistible.',price:13.90,emoji:'🦐',img:''},
-  {id:6,name:'Tabla de Quesos Canarios',desc:'Selección de quesos artesanales de Tenerife con mermelada de higo y picos de pan.',price:12.50,emoji:'🧀',img:''}
-];
-const COCKTAILS_DEFAULTS=[
-  {id:1,name:'Sangría The Moon',desc:'Nuestra sangría artesanal con vino tinto, frutas de temporada y toque de canela.',price:7.50,emoji:'🍷',img:''},
-  {id:2,name:'Mojito Tropical',desc:'Ron blanco, lima, menta fresca, azúcar moreno y un toque de mango.',price:9.00,emoji:'🍹',img:''},
-  {id:3,name:'Sunset Spritz',desc:'Aperol, prosecco, naranja sanguina y agua con gas. El cóctel del atardecer.',price:8.50,emoji:'🌅',img:''},
-  {id:4,name:'Piña Colada',desc:'Ron blanco, crema de coco y piña fresca. Refrescante y tropical.',price:9.00,emoji:'🍍',img:''},
-  {id:5,name:'Cerveza Artesanal',desc:'Selección de cervezas artesanales de Tenerife. Preguntar al camarero por la del día.',price:4.50,emoji:'🍺',img:''},
-  {id:6,name:'Agua Mineral',desc:'Agua mineral natural o con gas, botella de 50cl.',price:2.50,emoji:'💧',img:''}
-];
-function getData(k,d){try{const s=localStorage.getItem('themoon_'+k);return s?JSON.parse(s):d}catch{return d}}
-function getMenu(){return getData('menu',MENU_DEFAULTS)}
-function getCocktails(){return getData('cocktails',COCKTAILS_DEFAULTS)}
-function fmtPrice(p){return parseFloat(p).toFixed(2).replace('.',',')+' €'}
+// MENU_DEFAULTS defined in main
+// COCKTAILS_DEFAULTS defined in main
+// getData defined in maincatch{return d}}
+// getMenu defined in main
+// getCocktails defined in main
+// fmtPrice defined in main
 
 // ── TABS ──
 let activeTab='platos';
@@ -2429,13 +2455,13 @@ function switchTab(tab, btn){
       b.classList.add('active');
     }
   });
-  if(tab==='platos') renderMenu();
-  else renderCocktails();
+  if(tab==='platos') cartaRenderMenu();
+  else cartaRenderCocktails();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
 // ── RENDER ──
-function renderMenu(){
+function cartaRenderMenu(){
   const grid=document.getElementById('menu-grid-carta');
   const items=getMenu();
   if(!items.length){
@@ -2462,7 +2488,7 @@ function renderMenu(){
   animateCards(grid,'menu-card');
 }
 
-function renderCocktails(){
+function cartaRenderCocktails(){
   const grid=document.getElementById('cocktails-grid-carta');
   const items=getCocktails();
   if(!items.length){
@@ -2492,23 +2518,7 @@ function animateCards(container, cls){
   cards.forEach(c=>obs.observe(c));
 }
 
-// ── NAV / PROGRESS ──
-window.addEventListener('scroll',()=>{
-  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
-  const bar=document.getElementById('progress-bar');
-  const pct=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
-  bar.style.width=Math.min(pct,100)+'%';
-},{passive:true});
-
-// ── HAMBURGER (mobile switches tabs) ──
-document.getElementById('hamburger').addEventListener('click',function(){
-  this.classList.toggle('open');
-});
-
-// ── INIT ──
-document.addEventListener('DOMContentLoaded',()=>{
-  renderMenu();
-});
+// nav/scroll handled by router
 </script>
 </body>
 </html>
